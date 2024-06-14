@@ -1,0 +1,210 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29-Nov-2023, 10:53:42 am
+    Author     : HP
+*/
+
+:root {
+		/* --main-bg-color: #009d63; */
+		--main-bg-color: white;
+		/* --main-text-color: #009d63; */
+		--main-text-color:white;
+	--second-text-color: #bbbec5;
+	--second-bg-color: #c1efde;
+  }
+  
+  .primary-text {
+	color: var(--main-text-color);
+  }
+  
+  .second-text {
+	color: var(--second-text-color);
+  }
+  
+  .primary-bg {
+	background-color: var(--main-bg-color);
+  }
+  
+  .secondary-bg {
+	background-color: var(--second-bg-color);
+  }
+  
+  .rounded-full {
+	border-radius: 100%;
+  }
+  
+  #wrapper {
+	overflow-x: hidden;
+	background-image: linear-gradient(
+	  /* to right,
+	  #baf3d7,
+	  #c2f5de,
+	  #cbf7e4,
+	  #d4f8ea,
+	  #ddfaef */
+	  white
+	);
+  }
+  
+  #sidebar-wrapper {
+	min-height: 100vh;
+	margin-left: -15rem;
+	-webkit-transition: margin 0.25s ease-out;
+	-moz-transition: margin 0.25s ease-out;
+	-o-transition: margin 0.25s ease-out;
+	transition: margin 0.25s ease-out;
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+	background-color: rgb(45, 44, 44);
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+	height: 10vh;
+  }
+  
+  #sidebar-wrapper .list-group {
+	background-color: rgb(45, 44, 44);
+	width: 15rem;
+	height: 100vh;
+  }
+  
+  #page-content-wrapper {
+	min-width: 100vw;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+	margin-left: 0;
+  }
+  
+  #menu-toggle {
+	cursor: pointer;
+  }
+  
+  .list-group-item {
+	border: none;
+	padding: 20px 30px;
+  }
+  
+  .list-group-item.active {
+	background-color: transparent;
+	color: var(--main-text-color);
+	font-weight: bold;
+	border: none;
+  }
+  
+img{
+	height: 15vh;
+	width: 100%;
+}
+.table-responsive{
+    margin: 50px;
+}
+
+  @media (min-width: 768px) {
+	#sidebar-wrapper {
+	  margin-left: 0;
+	}
+  
+	#page-content-wrapper {
+	  min-width: 0;
+	  width: 100%;
+	}
+  
+	#wrapper.toggled #sidebar-wrapper {
+	  margin-left: -15rem;
+	}
+  }
+  /* --------------------------------------------------------------------------------------- */
+
+
+
+/*.main{
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+}*/
+/*.row{
+border: 1px solid black;
+width: 37%;
+height:600px;
+background: #fff;
+box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.2);
+}*/
+.input-box{
+width: 430px;
+box-sizing: border-box;
+
+}
+.input-box header{
+margin-top: 20px;
+font-weight: 700;
+text-align: center;
+margin-bottom: 30px;
+
+}
+.input-field{
+display: flex;
+flex-direction: column;
+position: relative;
+padding: 0 10px 0 10px;
+
+}
+.input{
+height: 45px;
+width: 100%;
+background: transparent;
+border: none;
+border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+outline: none;
+margin-bottom: 20px;
+color: #40414a;
+
+}
+.input-box .input-field label{
+position: absolute;
+top: 10px;
+left: 10px;
+pointer-events: none;
+transition: .5s;
+
+}
+.input-field .input:focus ~ label{
+top: -10px;
+font-size: 13px;
+
+}
+.input-field .input:valid ~ label{
+top: -10px;
+font-size: 13px;
+color: #5d5076;
+
+}
+.input-field .input:focus,.input-field .input:valid .input-field .input:valid ~ label{
+border-bottom: 1px solid #743ae1;
+
+}
+.submit{
+border: none;
+outline: none;
+height: 45px;
+background:#ececec;
+border-radius: 5px;
+transition: .4s;
+justify-content: center;
+width: 100%;
+
+}
+.submit:hover{
+background: rgba(37, 95, 156, 0.9);
+columns: #fff;
+
+}
+/*button{
+height: 10vh;
+width: 30%;
+justify-content: center;
+}*/

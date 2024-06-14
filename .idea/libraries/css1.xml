@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="css1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/web/ManagerView/css.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
