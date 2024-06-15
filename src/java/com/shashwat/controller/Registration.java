@@ -30,7 +30,7 @@ public class Registration extends HttpServlet {
 
             UserDAO udao = new UserDAO(fullname, userName, email, mobile, password, gender, dob);
             UserDTO udto = new UserDTO();
-
+            System.out.println("registration page+++++++++++++++++++++++");
             HttpSession session = request.getSession();
             if (udto.insert(udao)) {
 

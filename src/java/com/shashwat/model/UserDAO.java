@@ -84,4 +84,9 @@ public class UserDAO implements Serializable {
         this.dob = dob;
     }
 
+    @Override
+    public String toString() {
+        return "UserDAO{" + "id=" + id + ", fullname=" + fullname + ", username=" + username + ", email=" + email + ", mobile=" + mobile + ", password=" + password + ", gender=" + gender + ", dob=" + dob + '}';
+    }
+
 }

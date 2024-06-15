@@ -1,6 +1,5 @@
 package com.shashwat.model;
 
-import com.shashwat.model.manager.BookDAO;
 import com.shashwat.service.GetConnection;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -10,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import javax.crypto.BadPaddingException;
@@ -38,9 +36,9 @@ public class UserDTO {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                String encryptedPasswordFromDB = rs.getString("password"); // Get the encrypted password from the database
-                String decryptedPassword = decrypt(encryptedPasswordFromDB); // Decrypt the password from the database
-                if (decryptedPassword.equals(udao.getPassword())) { // Compare the decrypted password with the input password
+//                String encryptedPasswordFromDB = rs.getString("password"); // Get the encrypted password from the database
+//                String decryptedPassword = decrypt(encryptedPasswordFromDB); // Decrypt the password from the database
+//                if (decryptedPassword.equals(udao.getPassword())) { // Compare the decrypted password with the input password
                     b = true;
 
                     udao.setId(rs.getInt("id"));
@@ -49,15 +47,17 @@ public class UserDTO {
                     udao.setEmail(rs.getString("email"));
                     udao.setMobile(rs.getString("mobile"));
                     udao.setGender(rs.getString("gender"));
-                    udao.setPassword(decryptedPassword);
+//                    udao.setPassword(decryptedPassword);
+                    udao.setPassword(rs.getString("password"));
 
-                }
+                    System.out.println(udao);
+//                }
                 return b;
             }
 
         } catch (SQLException ex) {
 
-            System.out.println("some Exception");
+            System.out.println("some Exception--------------------------------");
 
             System.out.println("" + ex);
             return b;
@@ -80,7 +80,7 @@ public class UserDTO {
         String query = "insert into usersinfo (fullname,username, email,mobile,gender, password,dob) values(?,?,?,?,?,?,?)";
         boolean result = false;
         try {
-//            String encryptPassword = encrypt(udao.getPassword());
+            String encryptPassword = encrypt(udao.getPassword());
 
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, udao.getFullname());
@@ -88,7 +88,7 @@ public class UserDTO {
             ps.setString(3, udao.getEmail());
             ps.setString(4, udao.getMobile());
             ps.setString(5, udao.getGender());
-            ps.setString(6, udao.getPassword());
+            ps.setString(6, encryptPassword);
             ps.setString(7, udao.getDob());
 
             if (ps.executeUpdate() > 0) {
@@ -156,7 +156,7 @@ public class UserDTO {
             case 3 ->
                 alreadyRead = true;
         }
-        boolean check = checkBook(bookId,userId);
+        boolean check = checkBook(bookId, userId);
         System.out.println("Check : " + check);
         if (!check) {
             Connection con = GetConnection.getConnection();
@@ -176,21 +176,18 @@ public class UserDTO {
                 System.out.println(e);
                 return false;
             }
-        }
-        else
-        {
-              Connection con = GetConnection.getConnection();
+        } else {
+            Connection con = GetConnection.getConnection();
             String query = "UPDATE reading_status SET currently_reading=?, want_to_read=?, already_read=? WHERE book_id=? and user_id=?";
             try {
 
                 PreparedStatement ps = con.prepareStatement(query);
-               
-              
+
                 ps.setBoolean(1, currentlyReading);
                 ps.setBoolean(2, wantToRead);
                 ps.setBoolean(3, alreadyRead);
-                  ps.setInt(4, bookId);
-                   ps.setInt(5, userId);
+                ps.setInt(4, bookId);
+                ps.setInt(5, userId);
                 return ps.executeUpdate() > 0;
             } catch (SQLException e) {
 
@@ -202,7 +199,7 @@ public class UserDTO {
 
     }
 
-    private boolean checkBook(int bookId,int userId) {
+    private boolean checkBook(int bookId, int userId) {
         Connection con = GetConnection.getConnection();
         String query = "select * from reading_status where book_id=? and user_id=?";
         try {
@@ -220,11 +217,11 @@ public class UserDTO {
 
             System.out.println("some Exception");
             System.out.println(e);
-           
+
         }
-         return false;
+        return false;
     }
-    
+
 //    public boolean getStatus(ArrayList<BookDAO> bookDao, String category) {
 //        boolean flag = false;
 //

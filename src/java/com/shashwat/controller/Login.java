@@ -34,12 +34,12 @@ public class Login extends HttpServlet {
             UserDAO udao = new UserDAO();
             udao.setUsername(username);
             udao.setPassword(password);
-
+    
             UserDTO udto = new UserDTO();
             HttpSession session = request.getSession();
             if (udto.login(udao)) {
-                 session.setAttribute("udao", udao); //user login success
-                 
+                 System.out.println("if call-----------------");
+                session.setAttribute("udao", udao); //user login success
                  
                 ArrayList<BlogDAO> bloglist = new ArrayList<>();
                 BlogDTO blogdto = new BlogDTO();           
@@ -47,12 +47,11 @@ public class Login extends HttpServlet {
 
                     session.setAttribute("bloglist", bloglist); //geting blog success
                 }
-
-                
-                             
+     
                 response.sendRedirect("GetBook");
 //                response.sendRedirect("./UserView/Home.jsp");
             } else {
+                System.out.println("else call-----------------");
                 response.sendRedirect("Login.jsp");
             }
 
